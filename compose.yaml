@@ -1,0 +1,20 @@
+networks:
+  network:
+    name: "${PROJECT}-network"
+
+volumes:
+  portainer_data:
+    name: "${PROJECT}-portainer_data"
+
+services:
+  portainer:
+    container_name: "${PROJECT}-portainer"
+    hostname: "${PROJECT}-portainer"
+    image: portainer/portainer-ce:linux-amd64
+    pull_policy: always
+    restart: always
+    networks:
+      - network
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
